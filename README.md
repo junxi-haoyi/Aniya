@@ -3,7 +3,7 @@
 注：此项目是参考[Monica](https://github.com/Forairaaaaa/monica)根据自己的想法进行一些更改和添加，更多的是学习。在此特别感谢[@Forairaaaaa](https://oshwhub.com/eedadada)
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/case%20v82.png)
 
-软件开源地址：
+硬件开源地址：
 
 ## 手表功能
 - 蓝牙HID：及开启后可以将手表识别为键盘，在SD卡里面可以存一些密码或者其他东西，在屏幕上点击一下即可在电脑或者手机端输入文本
