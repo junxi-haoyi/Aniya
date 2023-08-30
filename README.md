@@ -57,7 +57,9 @@
 
 ## 软件流程图
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20212308.png)
+
 **main 文件夹**
+
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20212656.png)
 
 - MYUI：本文件的UI部分
@@ -66,6 +68,7 @@
 - main.cpp:该项目是由C++编写的
 
 **components 文件夹**
+
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20213323.png)
 
 - LovyanGFX:一个高效的图形库
