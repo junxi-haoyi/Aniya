@@ -90,8 +90,8 @@ void wifi_init_sta(char * SSID, char * PASS)
     wifi_config_t wifi_config = {0};
     sprintf((char *)wifi_config.sta.ssid, "%s", SSID);
     sprintf((char *)wifi_config.sta.password, "%s", PASS);
-    wifi_config.threshold.authmode = WIFI_AUTH_WPA2_PSK;
-    wifi_config.sae_pwe_h2e = WPA3_SAE_PWE_BOTH;
+    wifi_config.sta.threshold.authmode = WIFI_AUTH_WPA2_PSK;
+    wifi_config.sta.sae_pwe_h2e = WPA3_SAE_PWE_BOTH;
     // wifi_config_t wifi_config = {
     //     .sta = {
     //         .ssid = SSID,

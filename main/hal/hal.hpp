@@ -6,6 +6,8 @@
 #include "tp/hal_lcd_tp.hpp"
 #include "tp/hal_tp.hpp"
 #include "sd_card/hal_sd_card.hpp"
+#include "power/hal_power.hpp"
+#include "rtc/hal_rtc.hpp"
 
 #include <stdio.h>
 
