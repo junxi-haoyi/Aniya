@@ -32,6 +32,7 @@ LCD屏幕功耗高、分辨率低、但是帧数可以稳定在50 FPS左右，�
 - BMP280: 气压传感器
 - 一个麦克风
 - 一个Type-C口（本次设计中失败之处，因为type-c会占用大量的空间，导致PCB和3D建模都不好绘制）
+  
 **原理图**
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/_Aniya.png)
 **PCB**
