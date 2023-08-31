@@ -30,6 +30,7 @@ static void lv_HeartBeat(void)
 
 extern "C" void app_main()
 {
+    Hardware.BMI270_init();
     Hardware.sd_card_init();
     Hardware.qoled_init();
     Hardware.oled_tp_init();
