@@ -1,6 +1,6 @@
 # Aniya Watch💖
 
-注：此项目是参考[Monica](https://github.com/Forairaaaaa/monica)根据自己的想法进行一些更改和添加，更多的是学习。在此特别感谢[@Forairaaaaa](https://oshwhub.com/eedadada)
+此项目是根据[Monica](https://github.com/Forairaaaaa/monica)改编而来。
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/case%20v82.png)
 
 硬件开源地址：
