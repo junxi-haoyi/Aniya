@@ -5,6 +5,7 @@
 
 硬件开源地址：
 
+**制作不易，别忘了点一个star**🥰🥰🥰🥰🥰🥰
 ## 手表功能
 - 蓝牙HID：及开启后可以将手表识别为键盘，在SD卡里面可以存一些密码或者其他东西，在屏幕上点击一下即可在电脑或者手机端输入文本
 - 计步器：BMI270内部硬件计步
@@ -47,6 +48,15 @@
 当然工具不分贵贱，大家需要根据自己的实际情况选择适合开发环境🫡
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20190557.png)
 
+## IIC地址问题
+IIC地址因为存在最后一位是读（1）还是写（0），而且在函数里面填地址的时候，到底是写添加读写位的地址，还是填原地址
+
+在这里说明一下，ESP32 IDF是需要填写原地址（不加读写位），STM32的IIC需要添加读写位。
+
+## 蓝牙键盘功能说明
+- 不建议在不插电源的情况下开启蓝牙功能，因为开启蓝牙后，会明显感觉（物理）到芯片发烫，虽然叫BLE（低功耗蓝牙），咱也不懂
+- 开启蓝牙功能需要在menuconfig里面设置一下，才能开启蓝牙功能
+- 
 
 ##  3D建模
 本次使用的是Fusion360来绘制该手表的外壳，不得不感叹，我从B站大学毕业，自己画的可能比较粗略，仅供参考。
@@ -79,3 +89,10 @@
 ## App的创建与删除
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20220427.png)
 其实就是使用了lvgl的各个组件的回调函数来管理APP的生命周期，至于Android的那一套App管理思想，不是那么容易实现，MYUI框架下的APP各自属性都不一样，无法做到Android那一套的统一管理
+
+
+
+## 相关链接
+- emoji表情壁纸网站: <a hred="https://www.freepik.com/">emoji</a>
+- Bit map字体网站: <a href="https://www.dafont.com/bitmap.php">Bit map</a>
+- ESP32-IDF: <a href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html">ESP-TDF</a>

@@ -8,6 +8,7 @@
 #include "sd_card/hal_sd_card.hpp"
 #include "power/hal_power.hpp"
 #include "rtc/hal_rtc.hpp"
+#include "BMI270/hal_BMI270.hpp"
 
 #include <stdio.h>
 

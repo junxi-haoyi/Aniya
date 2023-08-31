@@ -4,15 +4,8 @@
 
 LGFX_OLED amoled;
 
-LGFX_Sprite sprite(&amoled);
-
 void HAL::sd_card_init(void)
 {
-    // gpio_reset_pin(GPIO_NUM_19);
-    // gpio_set_direction(GPIO_NUM_19, GPIO_MODE_OUTPUT);
-    // gpio_set_pull_mode(GPIO_NUM_19, GPIO_PULLUP_PULLDOWN);
-    // gpio_set_level(GPIO_NUM_19, 1);
-
     sd_card.init();
 }
 
@@ -84,7 +77,8 @@ void HAL::amoled_PwmLightUp(uint8_t num)
     }
     qdisp.endWrite();
 }
-
+/*********************************LovyanGFX Example************************************************/
+LGFX_Sprite sprite(&amoled);
 static LGFX_Sprite canvas(&amoled);
 static LGFX_Sprite clockbase(&canvas); // 時計の文字盤パーツ
 static LGFX_Sprite needle1(&canvas);   // 長針・短針パーツ
@@ -377,3 +371,11 @@ void HAL::movingIcons(void)
         vTaskDelay(1);
     }
 }
+
+
+
+
+
+
+
+

@@ -1,9 +1,9 @@
 /**
  * @file hal_rtc.hpp
- * @author Forairaaaaa
- * @brief Thanks to https://github.com/nopnop2002/esp-idf-pcf8563
+ * @author junxi-haoyi
+ * @brief Thanks to https://github.com/Forairaaaaa/monica.git
  * @version 0.1
- * @date 2023-05-21
+ * @date 2023-08-23
  * 
  * @copyright Copyright (c) 2023
  * 
