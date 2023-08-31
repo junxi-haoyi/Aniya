@@ -30,18 +30,18 @@ static void lv_HeartBeat(void)
 
 extern "C" void app_main()
 {
-    Hardware.BMI270_init();
     Hardware.sd_card_init();
     Hardware.qoled_init();
     Hardware.oled_tp_init();
+    Hardware.BMI270_init();
     Hardware.lvgl.init(&Hardware.qdisp, &Hardware.oled_tp);
     lv_HeartBeat();
-    // lv_demo_music();
     ESP_LOGI("init", "Init OK");
 
     ui.init();
     ui.json_test();
     // lv_demo_widgets();
+    // lv_demo_music();
     // lv_demo_benchmark();
     // ui_init();
     Hardware.lvgl.update();
@@ -51,5 +51,10 @@ extern "C" void app_main()
     {
         Hardware.lvgl.update();
         vTaskDelay(2);
+        // printf("steps:%ld\n", Hardware.imu.getSteps());
+        if(gpio_get_level(GPIO_NUM_11) == 0)printf("INT level:%d\n", gpio_get_level(GPIO_NUM_11));
     }
+
+
+
 }

@@ -10,6 +10,9 @@ void HAL::BMI270_init(void)
     imu.init();
     imu.setWristWearWakeup();
     imu.enableStepCounter();
+    gpio_reset_pin(GPIO_NUM_11);
+    gpio_set_pull_mode(GPIO_NUM_11, GPIO_FLOATING);
+    gpio_set_direction(GPIO_NUM_11, GPIO_MODE_INPUT);
 }
 
 
