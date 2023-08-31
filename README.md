@@ -40,7 +40,7 @@ LCD屏幕功耗高、分辨率低、但是帧数可以稳定在50 FPS左右，�
 **重点**：
 - TF卡槽的switch用于检测TF卡是否插入，他和VDD3V3相连，千万不要接地
 - AXP2101的DCDC1稳定输出3.3V，所以也就不存在定制芯片的原因，但是这款芯片价格不菲，我是买这家的<a href="https://m.tb.cn/h.53y0l3c?tk=C29GdCWJpgx" target="_blank">AXP2101</a>
-- ![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20193009.png)
+![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20193009.png)
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20181106.png)
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/Aniya_PCB.jpg)
 
