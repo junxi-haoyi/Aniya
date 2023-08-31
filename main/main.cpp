@@ -36,14 +36,10 @@ extern "C" void app_main()
     Hardware.oled_tp_init();
     Hardware.lvgl.init(&Hardware.qdisp, &Hardware.oled_tp);
     lv_HeartBeat();
-    // lv_demo_music();
     ESP_LOGI("init", "Init OK");
 
     ui.init();
     ui.json_test();
-    // lv_demo_widgets();
-    // lv_demo_benchmark();
-    // ui_init();
     Hardware.lvgl.update();
     Hardware.amoled_PwmLightUp(150);
 
