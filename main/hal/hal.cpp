@@ -4,6 +4,16 @@
 
 LGFX_OLED amoled;
 
+// Copy from https://github.com/Forairaaaaa/monica.git  I don't want write by own
+void HAL::BMI270_init(void)
+{
+    imu.init();
+    imu.setWristWearWakeup();
+    imu.enableStepCounter();
+}
+
+
+
 void HAL::sd_card_init(void)
 {
     sd_card.init();
@@ -11,12 +21,11 @@ void HAL::sd_card_init(void)
 
 void HAL::lcd_St7789_init(void)
 {
-    // lcd_st7789.setBrightness(255);
     lcd_st7789.init();
     lcd_st7789.setBrightness(0);
 }
 
-void HAL::tp_init(void)
+void HAL::lcd_tp_init(void)
 {
     auto cfg = tp.config();
     cfg.pull_up_en = false;
@@ -77,6 +86,9 @@ void HAL::amoled_PwmLightUp(uint8_t num)
     }
     qdisp.endWrite();
 }
+
+
+
 /*********************************LovyanGFX Example************************************************/
 LGFX_Sprite sprite(&amoled);
 static LGFX_Sprite canvas(&amoled);

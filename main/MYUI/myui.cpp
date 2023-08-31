@@ -45,6 +45,7 @@ lv_obj_t *app_aniya;
 lv_obj_t *app_aniya_text;
 
 lv_obj_t *ui_page_mian;
+lv_obj_t *ble_page_mian;
 
 //////////////////////////////////// ui_clock_page ////////////////////////////////////////////
 
@@ -391,8 +392,25 @@ void MYUI::ui_mian_page_init(void)
     app_event_cb_init();
 }
 
+
+void MYUI::ble_mian_page_init(void)
+{
+    ble_page_mian = lv_obj_create(NULL);
+    lv_obj_set_scrollbar_mode(ble_page_mian, LV_SCROLLBAR_MODE_OFF);
+    lv_obj_set_scroll_dir(ble_page_mian, LV_DIR_VER);
+    lv_obj_set_style_radius(ble_page_mian, 20, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ble_page_mian, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ble_page_mian, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+
+
+}
+
 void MYUI::ui_clock_page_init(void)
 {
+
+
+
 }
 
 void MYUI::init(void)
@@ -409,7 +427,7 @@ void MYUI::init(void)
     lv_disp_load_scr(ui_page_mian);
 }
 
-void MYUI::cjson_test(void)
+void MYUI::json_test(void)
 {
     // lv_fs_dir_t dir;
     // lv_fs_res_t res;
@@ -439,4 +457,17 @@ void MYUI::cjson_test(void)
     // }
 
     // lv_fs_dir_close(&dir);
+    char json[] = "{\"sensor\":\"gps\",\"time\":1351824120,\"data\":[48.756080,2.302038]}";
+    ArduinoJson::V6213HB2::DynamicJsonDocument doc(1024);
+    deserializeJson(doc, json);
+
+    const char* sensor = doc["sensor"];
+    long time = doc["time"];
+    double latitude = doc["data"][0];
+    double longitude = doc["data"][1];
+    printf("%s\n", sensor);
+    printf("%ld\n", time);
+    printf("%f\n", latitude);
+    printf("%f\n", longitude);
+
 }

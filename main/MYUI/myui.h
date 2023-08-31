@@ -16,6 +16,8 @@
 #include "aniya_wifi.h"
 #include "aniya_ble.h"
 
+#include "ArduinoJson.hpp"
+
 typedef enum _app_states
 {
     APP_Undefined = 0,
@@ -72,6 +74,7 @@ class MYUI
 
 private:
     static void ui_mian_page_init(void);
+    static void ble_mian_page_init(void);
     static void ui_clock_page_init(void);
 
     static void app_clock_event_cb(lv_event_t *e);
@@ -125,5 +128,5 @@ public:
 
     void init(void);
 
-    void cjson_test(void);
+    void json_test(void);
 };

@@ -32,9 +32,15 @@ class HAL{
 
         FT3168::TP_FT3168 oled_tp;
 
+        BMI270::BMI270 imu;
+
+        void init();
+
+        void BMI270_init();
+
         void lcd_St7789_init();
 
-        void tp_init();
+        void lcd_tp_init();
 
         void qoled_init();
 
