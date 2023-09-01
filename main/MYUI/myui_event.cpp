@@ -6,47 +6,48 @@ void MYUI::app_clock_event_cb(lv_event_t *e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t *target = lv_event_get_target(e);
-    if (event_code == LV_EVENT_SHORT_CLICKED && ui_data.state != APP_Focused)
+    if (event_code == LV_EVENT_SHORT_CLICKED && app_clock_data.state != APP_Focused)
     {
-        ui_data.midx = lv_obj_get_x(app_clock) + lv_obj_get_width(app_clock) / 2;
-        ui_data.midy = lv_obj_get_y(app_clock) + lv_obj_get_height(app_clock) / 2;
+        app_clock_data.midx = lv_obj_get_x(app_clock) + lv_obj_get_width(app_clock) / 2;
+        app_clock_data.midy = lv_obj_get_y(app_clock) + lv_obj_get_height(app_clock) / 2;
 
-        ui_data.mvx = 105;
-        ui_data.mvy = 0;
-        ui_data.width = 210;
-        ui_data.height = 0;
+        app_clock_data.mvx = 105;
+        app_clock_data.mvy = 0;
+        app_clock_data.width = 210;
+        app_clock_data.height = 0;
 
-        app_focused(app_clock, 0, &ui_data);
-        anim_move_x(app_weather, 0, ui_data.mvx + 110);
-        anim_move_x(app_clock_text_hour, 0, -ui_data.mvx);
-        anim_move_x(app_clock_text_min, 0, -ui_data.mvx);
+        app_focused(app_clock, 0, &app_clock_data);
+        anim_move_x(app_weather, 0, app_clock_data.mvx + 110);
+        anim_move_x(app_clock_text_hour, 0, -app_clock_data.mvx);
+        anim_move_x(app_clock_text_min, 0, -app_clock_data.mvx);
 
         app_clock_text_onCreate();
 
         lv_obj_clear_flag(ui_page_mian, LV_OBJ_FLAG_SCROLLABLE);
-        ui_data.state = APP_Focused;
+        app_clock_data.state = APP_Focused;
 
         return;
     }
 
-    if (event_code == LV_EVENT_SHORT_CLICKED && ui_data.state == APP_Focused)
+    if (event_code == LV_EVENT_SHORT_CLICKED && app_clock_data.state == APP_Focused)
     {
         lv_event_code_t event_code = lv_event_get_code(e);
         lv_obj_t *target = lv_event_get_target(e);
 
-        ui_data.mvx = -105;
-        ui_data.mvy = 0;
-        ui_data.width = -210;
-        ui_data.height = 0;
+        app_clock_data.mvx = -105;
+        app_clock_data.mvy = 0;
+        app_clock_data.width = -210;
+        app_clock_data.height = 0;
 
-        app_focused(app_clock, 0, &ui_data);
-        anim_move_x(app_weather, 0, ui_data.mvx - 110);
-        anim_move_x(app_clock_text_hour, 0, -ui_data.mvx);
-        anim_move_x(app_clock_text_min, 0, -ui_data.mvx);
+        app_focused(app_clock, 0, &app_clock_data);
+        anim_move_x(app_weather, 0, app_clock_data.mvx - 110);
+        anim_move_x(app_clock_text_hour, 0, -app_clock_data.mvx);
+        anim_move_x(app_clock_text_min, 0, -app_clock_data.mvx);
 
         app_clock_text_onDestory();
 
-        ui_data.state = APP_Checkout;
+        app_clock_data.state = APP_Checkout;
+        return;
     }
 }
 
@@ -66,6 +67,8 @@ void MYUI::main_page_event_cb(lv_event_t *e)
         anim_panel_scale2big(app_brightness, 2600, 110, 60);
         anim_panel_scale2big(app_gif, 2800, 170, 75);
         anim_panel_scale2big(app_aniya, 2800, 160, 75);
+
+        return;
     }
 }
 
@@ -118,6 +121,79 @@ void MYUI::app_brightness_slider_event_cb(lv_event_t *e)
     uint16_t brghtness = lv_slider_get_value(app_brightness_slider);
     pwm.setBrightness(brghtness);
 }
+
+
+void MYUI::app_watch_face_event_cb(lv_event_t *e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t *target = lv_event_get_target(e);
+
+    if(event_code == LV_EVENT_SHORT_CLICKED && app_watch_face_data.state != APP_Focused)
+    {
+        app_watch_face_data.midx = lv_obj_get_x(app_watch_face) + lv_obj_get_width(app_watch_face) / 2;
+        app_watch_face_data.midy = lv_obj_get_y(app_watch_face) + lv_obj_get_height(app_watch_face) / 2;
+
+        app_watch_face_data.mvx = 184 - app_watch_face_data.midx;
+        app_watch_face_data.mvy = 224 - app_watch_face_data.midy;
+        app_watch_face_data.width = 180;
+        app_watch_face_data.height = 210;
+        app_focused(app_watch_face, 0, &app_watch_face_data);
+        // anim_panel_scale2small(app_clock, 160, 130, 160);
+        // anim_panel_scale2small(app_weather, 180, 195, 160);
+        // anim_panel_scale2small(app_mood, 200, 100, 100);
+        // anim_panel_scale2small(app_wifi, 220, 110, 60);
+        // anim_panel_scale2small(app_ble, 240, 110, 60);
+        // anim_panel_scale2small(app_brightness, 260, 110, 60);
+        // anim_panel_scale2small(app_gif, 280, 170, 75);
+        // anim_panel_scale2small(app_aniya, 280, 160, 75);
+
+        lv_obj_add_flag(app_clock, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_weather, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_mood, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_wifi, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_ble, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_brightness, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_gif, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_aniya, LV_OBJ_FLAG_HIDDEN);
+
+        app_watch_face_data.state = APP_Focused;
+
+        return;
+    }
+
+    if(event_code == LV_EVENT_SHORT_CLICKED && app_watch_face_data.state == APP_Focused)
+    {
+        app_watch_face_data.mvx = -app_watch_face_data.mvx;
+        app_watch_face_data.mvy = -app_watch_face_data.mvy;
+        app_watch_face_data.width = -180;
+        app_watch_face_data.height = -210;
+        app_focused(app_watch_face, 0, &app_watch_face_data);
+        // anim_panel_scale2big(app_clock, 160, 130, 160);
+        // anim_panel_scale2big(app_weather, 180, 195, 160);
+        // anim_panel_scale2big(app_mood, 200, 100, 100);
+        // anim_panel_scale2big(app_wifi, 220, 110, 60);
+        // anim_panel_scale2big(app_ble, 240, 110, 60);
+        // anim_panel_scale2big(app_brightness, 260, 110, 60);
+        // anim_panel_scale2big(app_gif, 280, 170, 75);
+        // anim_panel_scale2big(app_aniya, 280, 160, 75);
+
+
+        lv_obj_clear_flag(app_clock, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_weather, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_mood, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_wifi, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_ble, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_brightness, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_gif, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_aniya, LV_OBJ_FLAG_HIDDEN);
+
+        app_watch_face_data.state = APP_Checkout;
+
+        return;
+    }
+}
+
+
 
 void MYUI::app_clock_text_onCreate(void)
 {
@@ -246,3 +322,9 @@ void MYUI::app_brightness_slider_onDestory(void)
     lv_obj_del(app_brightness_slider);
     lv_obj_remove_event_cb(app_brightness_slider, app_brightness_slider_event_cb);
 }
+
+
+
+
+
+

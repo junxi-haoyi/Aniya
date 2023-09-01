@@ -48,6 +48,7 @@ extern "C" void app_main()
     Hardware.qoled_init();
     Hardware.oled_tp_init();
     // Hardware.BMI270_init();
+    // Hardware.RTC_init();
     Hardware.lvgl.init(&Hardware.qdisp, &Hardware.oled_tp);
     lv_HeartBeat();
     ESP_LOGI("init", "Init OK");
@@ -70,7 +71,5 @@ extern "C" void app_main()
     //     // printf("steps:%ld\n", Hardware.imu.getSteps());
     //     if(gpio_get_level(GPIO_NUM_11) == 0)printf("INT level:%d\n", gpio_get_level(GPIO_NUM_11));
     // }
-
-
 
 }

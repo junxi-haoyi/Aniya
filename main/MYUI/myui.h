@@ -37,8 +37,9 @@ typedef struct _myui_data
 } myui_data;
 
 //////////////////////////////////// ui_main_page ////////////////////////////////////////////
-extern myui_data ui_data;
+extern myui_data app_clock_data;
 extern myui_data app_brightness_data;
+extern myui_data app_watch_face_data;
 
 extern lv_obj_t *app_clock;
 extern lv_obj_t *app_clock_text_hour;
@@ -53,19 +54,34 @@ extern lv_obj_t *app_mood_tableview;
 extern lv_obj_t *app_mood_table;
 
 extern lv_obj_t *app_weather;
+extern lv_obj_t *app_weather_text;
+extern lv_obj_t *app_weather_temp;
+extern lv_obj_t *app_weather_img;
+
 extern lv_obj_t *app_watch_face;
+extern lv_obj_t *app_watch_face_text;
+extern lv_obj_t *app_watch_face_img;
 
 extern lv_obj_t *app_wifi;
+extern lv_obj_t *app_wifi_img;
+
+
 extern lv_obj_t *app_ble;
+extern lv_obj_t *app_ble_img;
 
 extern lv_obj_t *app_brightness;
 extern lv_obj_t *app_brightness_img;
 extern lv_obj_t *app_brightness_slider;
 
 extern lv_obj_t *app_gif;
+extern lv_obj_t *app_gif_item;
+
 extern lv_obj_t *app_aniya;
+extern lv_obj_t *app_aniya_text;
 
 extern lv_obj_t *ui_page_mian;
+extern lv_obj_t *ble_page_main;
+extern lv_obj_t *watch_face_page;
 
 //////////////////////////////////// ui_clock_page ////////////////////////////////////////////
 
@@ -82,6 +98,7 @@ private:
     static void main_page_event_cb(lv_event_t *e);
     static void app_brightness_slider_event_cb(lv_event_t *e);
     static void app_brightness_event_cb(lv_event_t *e);
+    static void app_watch_face_event_cb(lv_event_t *e);
 
     static void app_mood_img_onCreate(void);
     static void app_clock_text_onCreate(void);

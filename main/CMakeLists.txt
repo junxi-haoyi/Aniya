@@ -10,6 +10,7 @@ set(HAL_INCS
 file(GLOB_RECURSE MYUI_SRCS
     MYUI/*.c
     MYUI/*.cpp
+    MYUI/screens/*.cpp
 )
 set(MYUI_INCS
     MYUI/

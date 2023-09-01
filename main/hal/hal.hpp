@@ -34,9 +34,13 @@ class HAL{
 
         BMI270::BMI270 imu;
 
+        PCF8563::PCF8563 rtc;
+
         void init();
 
         void BMI270_init();
+
+        void RTC_init();
 
         void lcd_St7789_init();
 

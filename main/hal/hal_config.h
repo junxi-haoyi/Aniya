@@ -15,5 +15,5 @@
 #define SD_D2_PIN       12
 #define SD_D3_PIN       14
 
-
+#define RTC_INT_PIN     38
 

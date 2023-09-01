@@ -15,34 +15,15 @@ void HAL::BMI270_init(void)
     gpio_set_direction(GPIO_NUM_11, GPIO_MODE_INPUT);
 }
 
+void HAL::RTC_init(void)
+{
+    rtc.init(TP_SDA_PIN, TP_SCL_PIN, RTC_INT_PIN);
+}
 
 
 void HAL::sd_card_init(void)
 {
     sd_card.init();
-}
-
-void HAL::lcd_St7789_init(void)
-{
-    lcd_st7789.init();
-    lcd_st7789.setBrightness(0);
-}
-
-void HAL::lcd_tp_init(void)
-{
-    auto cfg = tp.config();
-    cfg.pull_up_en = false;
-    tp.config(cfg);
-    tp.init(TP_SDA_PIN, TP_SCL_PIN, TP_RST_PIN, TP_INT_PIN, true, 400000);
-}
-
-void HAL::lcd_PwmLightUp(void)
-{
-    for (uint16_t i = 0; i < 150; i++)
-    {
-        lcd_st7789.setBrightness(i);
-        vTaskDelay(10);
-    }
 }
 
 void HAL::oled_tp_init(void)
@@ -90,6 +71,30 @@ void HAL::amoled_PwmLightUp(uint8_t num)
     qdisp.endWrite();
 }
 
+
+
+void HAL::lcd_St7789_init(void)
+{
+    lcd_st7789.init();
+    lcd_st7789.setBrightness(0);
+}
+
+void HAL::lcd_tp_init(void)
+{
+    auto cfg = tp.config();
+    cfg.pull_up_en = false;
+    tp.config(cfg);
+    tp.init(TP_SDA_PIN, TP_SCL_PIN, TP_RST_PIN, TP_INT_PIN, true, 400000);
+}
+
+void HAL::lcd_PwmLightUp(void)
+{
+    for (uint16_t i = 0; i < 150; i++)
+    {
+        lcd_st7789.setBrightness(i);
+        vTaskDelay(10);
+    }
+}
 
 
 /*********************************LovyanGFX Example************************************************/
