@@ -17,7 +17,10 @@ void MYUI::app_clock_event_cb(lv_event_t *e)
         app_clock_data.height = 0;
 
         app_focused(app_clock, 0, &app_clock_data);
-        anim_move_x(app_weather, 0, app_clock_data.mvx + 110);
+
+        anim_panel_scale2small(app_weather, 0, 195, 160);
+        lv_obj_add_flag(app_weather, LV_OBJ_FLAG_HIDDEN);
+
         anim_move_x(app_clock_text_hour, 0, -app_clock_data.mvx);
         anim_move_x(app_clock_text_min, 0, -app_clock_data.mvx);
 
@@ -40,7 +43,10 @@ void MYUI::app_clock_event_cb(lv_event_t *e)
         app_clock_data.height = 0;
 
         app_focused(app_clock, 0, &app_clock_data);
-        anim_move_x(app_weather, 0, app_clock_data.mvx - 110);
+
+        anim_panel_scale2big(app_weather, 480, 195, 160);
+        lv_obj_clear_flag(app_weather, LV_OBJ_FLAG_HIDDEN);
+
         anim_move_x(app_clock_text_hour, 0, -app_clock_data.mvx);
         anim_move_x(app_clock_text_min, 0, -app_clock_data.mvx);
 
@@ -87,8 +93,13 @@ void MYUI::app_brightness_event_cb(lv_event_t *e)
 
         app_focused(app_brightness, 0, &app_brightness_data);
         anim_move_x(app_brightness_img, 0, -130);
-        anim_move_x(app_wifi, 0, -140);
-        anim_move_x(app_ble, 0, -250);
+
+        anim_panel_scale2small(app_wifi,0, 110, 60);
+        anim_panel_scale2small(app_ble, 0, 110, 60);
+        lv_obj_add_flag(app_wifi, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_ble, LV_OBJ_FLAG_HIDDEN);
+
+
         app_brightness_slider_onCreate();
         app_brightness_data.state = APP_Focused;
         return;
@@ -104,8 +115,12 @@ void MYUI::app_brightness_event_cb(lv_event_t *e)
 
         app_focused(app_brightness, 0, &app_brightness_data);
         anim_move_x(app_brightness_img, 0, 130);
-        anim_move_x(app_wifi, 0, 140);
-        anim_move_x(app_ble, 0, 250);
+
+        anim_panel_scale2big(app_wifi, 620, 110, 60);
+        anim_panel_scale2big(app_ble, 640, 110, 60);
+        lv_obj_clear_flag(app_wifi, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_ble, LV_OBJ_FLAG_HIDDEN);
+
         app_brightness_slider_onDestory();
 
         app_brightness_data.state = APP_Checkout;
@@ -135,17 +150,18 @@ void MYUI::app_watch_face_event_cb(lv_event_t *e)
 
         app_watch_face_data.mvx = 184 - app_watch_face_data.midx;
         app_watch_face_data.mvy = 224 - app_watch_face_data.midy;
-        app_watch_face_data.width = 180;
-        app_watch_face_data.height = 210;
+        app_watch_face_data.width = 100;
+        app_watch_face_data.height = 260;
         app_focused(app_watch_face, 0, &app_watch_face_data);
-        // anim_panel_scale2small(app_clock, 160, 130, 160);
-        // anim_panel_scale2small(app_weather, 180, 195, 160);
-        // anim_panel_scale2small(app_mood, 200, 100, 100);
-        // anim_panel_scale2small(app_wifi, 220, 110, 60);
-        // anim_panel_scale2small(app_ble, 240, 110, 60);
-        // anim_panel_scale2small(app_brightness, 260, 110, 60);
-        // anim_panel_scale2small(app_gif, 280, 170, 75);
-        // anim_panel_scale2small(app_aniya, 280, 160, 75);
+
+        anim_panel_scale2small(app_clock, 0, 130, 160);
+        anim_panel_scale2small(app_weather, 0, 195, 160);
+        anim_panel_scale2small(app_mood, 0, 100, 100);
+        anim_panel_scale2small(app_wifi,0, 110, 60);
+        anim_panel_scale2small(app_ble, 0, 110, 60);
+        anim_panel_scale2small(app_brightness, 0, 110, 60);
+        anim_panel_scale2small(app_gif, 0, 170, 75);
+        anim_panel_scale2small(app_aniya, 0, 160, 75);
 
         lv_obj_add_flag(app_clock, LV_OBJ_FLAG_HIDDEN);
         lv_obj_add_flag(app_weather, LV_OBJ_FLAG_HIDDEN);
@@ -165,17 +181,17 @@ void MYUI::app_watch_face_event_cb(lv_event_t *e)
     {
         app_watch_face_data.mvx = -app_watch_face_data.mvx;
         app_watch_face_data.mvy = -app_watch_face_data.mvy;
-        app_watch_face_data.width = -180;
-        app_watch_face_data.height = -210;
+        app_watch_face_data.width = -100;
+        app_watch_face_data.height = -260;
         app_focused(app_watch_face, 0, &app_watch_face_data);
-        // anim_panel_scale2big(app_clock, 160, 130, 160);
-        // anim_panel_scale2big(app_weather, 180, 195, 160);
-        // anim_panel_scale2big(app_mood, 200, 100, 100);
-        // anim_panel_scale2big(app_wifi, 220, 110, 60);
-        // anim_panel_scale2big(app_ble, 240, 110, 60);
-        // anim_panel_scale2big(app_brightness, 260, 110, 60);
-        // anim_panel_scale2big(app_gif, 280, 170, 75);
-        // anim_panel_scale2big(app_aniya, 280, 160, 75);
+        anim_panel_scale2big(app_clock, 560, 130, 160);
+        anim_panel_scale2big(app_weather, 680, 195, 160);
+        anim_panel_scale2big(app_mood, 700, 100, 100);
+        anim_panel_scale2big(app_wifi, 820, 110, 60);
+        anim_panel_scale2big(app_ble, 940, 110, 60);
+        anim_panel_scale2big(app_brightness, 1060, 110, 60);
+        anim_panel_scale2big(app_gif, 1280, 170, 75);
+        anim_panel_scale2big(app_aniya, 1080, 160, 75);
 
 
         lv_obj_clear_flag(app_clock, LV_OBJ_FLAG_HIDDEN);
@@ -192,6 +208,15 @@ void MYUI::app_watch_face_event_cb(lv_event_t *e)
         return;
     }
 }
+
+
+
+
+void MYUI::app_watch_face_selector_onCreate(void)
+{
+
+}
+
 
 
 

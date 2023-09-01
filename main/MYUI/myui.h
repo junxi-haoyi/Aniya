@@ -100,6 +100,7 @@ private:
     static void app_brightness_event_cb(lv_event_t *e);
     static void app_watch_face_event_cb(lv_event_t *e);
 
+    static void app_watch_face_selector_onCreate(void);
     static void app_mood_img_onCreate(void);
     static void app_clock_text_onCreate(void);
     static void app_clock_text_onDestory(void);
@@ -122,9 +123,12 @@ public:
     static void anim_move_y(lv_obj_t *TargetObject, int delay, int16_t y);               // move y animotion
     static void app_focused(lv_obj_t *TargetObject, int delay, myui_data *ui_data);
 
-    static void app_clock_init(void);
     static void app_clock_task(void *params);
-    static void app_clock_task_create(void);
+    static void app_steps_task(void *params);
+
+    static void app_task_create(void);
+
+    static void app_clock_init(void);
 
     static void app_weather_init(void);
 

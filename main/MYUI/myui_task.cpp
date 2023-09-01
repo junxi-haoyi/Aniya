@@ -1,6 +1,10 @@
 #include "myui.h"
+#include "BMI270.h"
+
+static BMI270::BMI270 imu_for_task;
 
 TaskHandle_t app_clock_Handle;
+TaskHandle_t app_steps_Handle;
 
 char hour_time[5];
 char mins_time[5];
@@ -46,7 +50,22 @@ void MYUI::app_clock_task(void *params)
     }
 }
 
-void MYUI::app_clock_task_create(void)
+
+char steps[10];
+void MYUI::app_steps_task(void *params)
 {
-    xTaskCreate(app_clock_task, "clock_task", 856, NULL, 1, &app_clock_Handle);
+    while (1)
+    {
+        sprintf(steps, "steps:%ld", imu_for_task.getSteps());
+        lv_label_set_text(app_aniya_text, steps);
+        vTaskDelay(1000*10);
+    }
+    
+}
+
+
+
+void MYUI::app_task_create(void)
+{
+    xTaskCreate(app_steps_task, "steps_task", 1024, NULL, 1, &app_steps_Handle);
 }

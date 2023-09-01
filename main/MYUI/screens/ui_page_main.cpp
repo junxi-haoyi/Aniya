@@ -295,7 +295,7 @@ void MYUI::app_aniya_init(void)
     lv_obj_set_width(app_aniya_text, LV_SIZE_CONTENT);  /// 1
     lv_obj_set_height(app_aniya_text, LV_SIZE_CONTENT); /// 1
     lv_obj_set_align(app_aniya_text, LV_ALIGN_CENTER);
-    lv_label_set_text(app_aniya_text, "Aniya");
+    lv_label_set_text(app_aniya_text, "steps:0");
     lv_obj_set_style_text_color(app_aniya_text, lv_color_hex(0xec2c64), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(app_aniya_text, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(app_aniya_text, &lv_font_montserrat_40, LV_PART_MAIN | LV_STATE_DEFAULT);
