@@ -44,8 +44,14 @@ lv_obj_t *app_gif_item;
 lv_obj_t *app_aniya;
 lv_obj_t *app_aniya_text;
 
+//////////////////////////////////// ui_watch_face_page ////////////////////////////////////////////
+lv_obj_t *aniya_img;
+lv_obj_t *aniya_label_time;
+lv_obj_t *aniya_label_date;
+//////////////////////////////////// ui_page ////////////////////////////////////////////
 lv_obj_t *ui_page_mian;
-lv_obj_t *ble_page_mian;
+lv_obj_t *ble_page_main;
+lv_obj_t *watch_face_page;
 
 //////////////////////////////////// ui_clock_page ////////////////////////////////////////////
 
@@ -355,7 +361,7 @@ void MYUI::app_event_cb_init(void)
     lv_obj_add_event_cb(ui_page_mian, main_page_event_cb, LV_EVENT_SCREEN_LOADED, NULL);
 }
 
-void MYUI::ui_mian_page_init(void)
+void MYUI::ui_main_page_init(void)
 {
     ui_page_mian = lv_obj_create(NULL);
     lv_obj_set_scrollbar_mode(ui_page_mian, LV_SCROLLBAR_MODE_OFF);
@@ -392,25 +398,55 @@ void MYUI::ui_mian_page_init(void)
     app_event_cb_init();
 }
 
-
 void MYUI::ble_mian_page_init(void)
 {
-    ble_page_mian = lv_obj_create(NULL);
-    lv_obj_set_scrollbar_mode(ble_page_mian, LV_SCROLLBAR_MODE_OFF);
-    lv_obj_set_scroll_dir(ble_page_mian, LV_DIR_VER);
-    lv_obj_set_style_radius(ble_page_mian, 20, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ble_page_mian, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ble_page_mian, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-
-
+    ble_page_main = lv_obj_create(NULL);
+    lv_obj_set_scrollbar_mode(ble_page_main, LV_SCROLLBAR_MODE_OFF);
+    lv_obj_set_scroll_dir(ble_page_main, LV_DIR_VER);
+    lv_obj_set_style_radius(ble_page_main, 20, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ble_page_main, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ble_page_main, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 }
 
 void MYUI::ui_clock_page_init(void)
 {
+}
 
+void MYUI::watch_face_page_init(void)
+{
+    watch_face_page = lv_obj_create(NULL);
+    lv_obj_clear_flag(watch_face_page, LV_OBJ_FLAG_SCROLLABLE); /// Flags
+    lv_obj_set_style_radius(watch_face_page, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(watch_face_page, lv_color_hex(0xE77C8E), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(watch_face_page, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    aniya_img = lv_img_create(watch_face_page);
+    lv_img_set_src(aniya_img, "/sdcard/aniya/1.png");
+    lv_obj_set_width(aniya_img, LV_SIZE_CONTENT);  /// 384
+    lv_obj_set_height(aniya_img, LV_SIZE_CONTENT); /// 412
+    lv_obj_set_x(aniya_img, 0);
+    lv_obj_set_y(aniya_img, 22);
+    lv_obj_set_align(aniya_img, LV_ALIGN_CENTER);
+    lv_obj_add_flag(aniya_img, LV_OBJ_FLAG_ADV_HITTEST);  /// Flags
+    lv_obj_clear_flag(aniya_img, LV_OBJ_FLAG_SCROLLABLE); /// Flags
 
+    aniya_label_time = lv_label_create(watch_face_page);
+    lv_obj_set_width(aniya_label_time, LV_SIZE_CONTENT);  /// 1
+    lv_obj_set_height(aniya_label_time, LV_SIZE_CONTENT); /// 1
+    lv_obj_set_x(aniya_label_time, -100);
+    lv_obj_set_y(aniya_label_time, -180);
+    lv_obj_set_align(aniya_label_time, LV_ALIGN_CENTER);
+    lv_label_set_text(aniya_label_time, "10:34");
+    lv_obj_set_style_text_font(aniya_label_time, &lv_font_montserrat_48, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    aniya_label_date = lv_label_create(watch_face_page);
+    lv_obj_set_width(aniya_label_date, LV_SIZE_CONTENT);  /// 1
+    lv_obj_set_height(aniya_label_date, LV_SIZE_CONTENT); /// 1
+    lv_obj_set_x(aniya_label_date, 100);
+    lv_obj_set_y(aniya_label_date, -180);
+    lv_obj_set_align(aniya_label_date, LV_ALIGN_CENTER);
+    lv_label_set_text(aniya_label_date, "Sun");
+    lv_obj_set_style_text_font(aniya_label_date, &lv_font_montserrat_48, LV_PART_MAIN | LV_STATE_DEFAULT);
 }
 
 void MYUI::init(void)
@@ -420,11 +456,12 @@ void MYUI::init(void)
                                               false, LV_FONT_DEFAULT);
     lv_disp_set_theme(dispp, theme);
 
-    ui_mian_page_init();
+    ui_main_page_init();
+    watch_face_page_init();
     // app_clock_task_create();
 
     ui____initial_actions0 = lv_obj_create(NULL);
-    lv_disp_load_scr(ui_page_mian);
+    lv_disp_load_scr(watch_face_page);
 }
 
 void MYUI::json_test(void)
@@ -461,7 +498,7 @@ void MYUI::json_test(void)
     ArduinoJson::V6213HB2::DynamicJsonDocument doc(1024);
     deserializeJson(doc, json);
 
-    const char* sensor = doc["sensor"];
+    const char *sensor = doc["sensor"];
     long time = doc["time"];
     double latitude = doc["data"][0];
     double longitude = doc["data"][1];
@@ -469,5 +506,4 @@ void MYUI::json_test(void)
     printf("%ld\n", time);
     printf("%f\n", latitude);
     printf("%f\n", longitude);
-
 }

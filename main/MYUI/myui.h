@@ -73,9 +73,10 @@ class MYUI
 {
 
 private:
-    static void ui_mian_page_init(void);
+    static void ui_main_page_init(void);
     static void ble_mian_page_init(void);
     static void ui_clock_page_init(void);
+    static void watch_face_page_init(void);
 
     static void app_clock_event_cb(lv_event_t *e);
     static void main_page_event_cb(lv_event_t *e);
