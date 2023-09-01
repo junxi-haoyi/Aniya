@@ -61,6 +61,7 @@ extern lv_obj_t *app_weather_img;
 extern lv_obj_t *app_watch_face;
 extern lv_obj_t *app_watch_face_text;
 extern lv_obj_t *app_watch_face_img;
+extern lv_obj_t *app_watch_face_selector;
 
 extern lv_obj_t *app_wifi;
 extern lv_obj_t *app_wifi_img;
@@ -99,8 +100,10 @@ private:
     static void app_brightness_slider_event_cb(lv_event_t *e);
     static void app_brightness_event_cb(lv_event_t *e);
     static void app_watch_face_event_cb(lv_event_t *e);
+    static void app_watch_face_selector_event_cb(lv_event_t *e);
 
     static void app_watch_face_selector_onCreate(void);
+    static void app_watch_face_selector_onDestory(void);
     static void app_mood_img_onCreate(void);
     static void app_clock_text_onCreate(void);
     static void app_clock_text_onDestory(void);

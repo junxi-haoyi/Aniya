@@ -26,6 +26,7 @@ lv_obj_t *app_weather_temp;
 lv_obj_t *app_watch_face;
 lv_obj_t *app_watch_face_text;
 lv_obj_t *app_watch_face_img;
+lv_obj_t *app_watch_face_selector;
 lv_obj_t *app_watch_face_button1;
 lv_obj_t *app_watch_face_button2;
 

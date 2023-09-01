@@ -178,6 +178,7 @@ void MYUI::app_watch_face_init(void)
     // lv_obj_set_x(app_watch_face_img, -70);
     // lv_obj_set_y(app_watch_face_img, 0);
     lv_obj_set_align(app_watch_face_img, LV_ALIGN_LEFT_MID);
+    lv_obj_add_flag(app_watch_face_img, LV_OBJ_FLAG_CLICKABLE);
     lv_obj_clear_flag(app_watch_face_img, LV_OBJ_FLAG_SCROLLABLE);
 
     app_watch_face_text = lv_label_create(app_watch_face);
@@ -298,7 +299,7 @@ void MYUI::app_aniya_init(void)
     lv_label_set_text(app_aniya_text, "steps:0");
     lv_obj_set_style_text_color(app_aniya_text, lv_color_hex(0xec2c64), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(app_aniya_text, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(app_aniya_text, &lv_font_montserrat_40, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(app_aniya_text, &lv_font_montserrat_28, LV_PART_MAIN | LV_STATE_DEFAULT);
 }
 
 void MYUI::app_event_cb_init(void)
@@ -308,6 +309,7 @@ void MYUI::app_event_cb_init(void)
     lv_obj_add_event_cb(app_clock, app_clock_event_cb, LV_EVENT_SHORT_CLICKED, NULL);
     lv_obj_add_event_cb(ui_page_mian, main_page_event_cb, LV_EVENT_SCREEN_LOADED, NULL);
     lv_obj_add_event_cb(app_watch_face, app_watch_face_event_cb, LV_EVENT_SHORT_CLICKED, NULL);
+    lv_obj_add_event_cb(app_watch_face_img, app_watch_face_event_cb, LV_EVENT_SHORT_CLICKED, NULL);
 }
 
 void MYUI::ui_main_page_init(void)

@@ -153,6 +153,7 @@ void MYUI::app_watch_face_event_cb(lv_event_t *e)
         app_watch_face_data.width = 100;
         app_watch_face_data.height = 260;
         app_focused(app_watch_face, 0, &app_watch_face_data);
+        anim_move_y(app_watch_face_text, 0, -130);
 
         anim_panel_scale2small(app_clock, 0, 130, 160);
         anim_panel_scale2small(app_weather, 0, 195, 160);
@@ -171,19 +172,25 @@ void MYUI::app_watch_face_event_cb(lv_event_t *e)
         lv_obj_add_flag(app_brightness, LV_OBJ_FLAG_HIDDEN);
         lv_obj_add_flag(app_gif, LV_OBJ_FLAG_HIDDEN);
         lv_obj_add_flag(app_aniya, LV_OBJ_FLAG_HIDDEN);
+        
+        app_watch_face_selector_onCreate();
 
         app_watch_face_data.state = APP_Focused;
 
         return;
     }
 
-    if(event_code == LV_EVENT_SHORT_CLICKED && app_watch_face_data.state == APP_Focused)
+    if(event_code == LV_EVENT_SHORT_CLICKED && app_watch_face_data.state == APP_Focused && target == app_watch_face_img)
     {
         app_watch_face_data.mvx = -app_watch_face_data.mvx;
         app_watch_face_data.mvy = -app_watch_face_data.mvy;
         app_watch_face_data.width = -100;
         app_watch_face_data.height = -260;
         app_focused(app_watch_face, 0, &app_watch_face_data);
+        anim_move_y(app_watch_face_text, 0, 130);
+
+
+
         anim_panel_scale2big(app_clock, 560, 130, 160);
         anim_panel_scale2big(app_weather, 680, 195, 160);
         anim_panel_scale2big(app_mood, 700, 100, 100);
@@ -203,18 +210,49 @@ void MYUI::app_watch_face_event_cb(lv_event_t *e)
         lv_obj_clear_flag(app_gif, LV_OBJ_FLAG_HIDDEN);
         lv_obj_clear_flag(app_aniya, LV_OBJ_FLAG_HIDDEN);
 
+        app_watch_face_selector_onDestory();
+
         app_watch_face_data.state = APP_Checkout;
 
         return;
     }
 }
 
+void MYUI::app_watch_face_selector_event_cb(lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    lv_obj_t * obj = lv_event_get_target(e);
 
+    if(code == LV_EVENT_VALUE_CHANGED) {
+        char buf[32];
+        lv_roller_get_selected_str(obj, buf, sizeof(buf));
+        printf("Selected month: %s\n", buf);
+    }
+}
 
 
 void MYUI::app_watch_face_selector_onCreate(void)
 {
+    char *str = NULL;
+    char list[100];
 
+    app_watch_face_selector = lv_roller_create(app_watch_face);
+    str = strcat(list, "Option 1\n");
+    str = strcat(list, "Option 2\n");
+    str = strcat(list, "Option 3\n");
+
+    lv_roller_set_options(app_watch_face_selector, str, LV_ROLLER_MODE_NORMAL);
+    lv_obj_set_width(app_watch_face_selector, 150);
+    lv_obj_set_height(app_watch_face_selector, 200);
+    lv_obj_set_x(app_watch_face_selector, 20);
+    lv_obj_set_align(app_watch_face_selector, LV_ALIGN_CENTER);
+
+    lv_obj_add_event_cb(app_watch_face_selector, app_watch_face_selector_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+}
+
+void MYUI::app_watch_face_selector_onDestory(void)
+{
+    lv_obj_del(app_watch_face_selector);
 }
 
 
