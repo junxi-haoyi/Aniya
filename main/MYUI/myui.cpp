@@ -27,8 +27,8 @@ lv_obj_t *app_watch_face;
 lv_obj_t *app_watch_face_text;
 lv_obj_t *app_watch_face_img;
 lv_obj_t *app_watch_face_selector;
-lv_obj_t *app_watch_face_button1;
-lv_obj_t *app_watch_face_button2;
+lv_obj_t *app_watch_face_button;
+lv_obj_t *app_watch_face_button_text;
 
 lv_obj_t *app_wifi;
 lv_obj_t *app_wifi_img;
@@ -143,16 +143,33 @@ void MYUI::json_test(void)
     // }
 
     // lv_fs_dir_close(&dir);
-    char json[] = "{\"sensor\":\"gps\",\"time\":1351824120,\"data\":[48.756080,2.302038]}";
-    ArduinoJson::V6213HB2::DynamicJsonDocument doc(1024);
-    deserializeJson(doc, json);
+    // char json[] = "{\"sensor\":\"gps\",\"time\":1351824120,\"data\":[48.756080,2.302038]}";
+    // ArduinoJson::V6213HB2::DynamicJsonDocument doc(1024);
+    // deserializeJson(doc, json);
 
-    const char *sensor = doc["sensor"];
-    long time = doc["time"];
-    double latitude = doc["data"][0];
-    double longitude = doc["data"][1];
-    printf("%s\n", sensor);
-    printf("%ld\n", time);
-    printf("%f\n", latitude);
-    printf("%f\n", longitude);
+    // const char *sensor = doc["sensor"];
+    // long time = doc["time"];
+    // double latitude = doc["data"][0];
+    // double longitude = doc["data"][1];
+    // printf("%s\n", sensor);
+    // printf("%ld\n", time);
+    // printf("%f\n", latitude);
+    // printf("%f\n", longitude);
+
+    // FILE *f = fopen("/sdcard/hello.json", "r");
+    // if(f == NULL)
+    // {
+    //     ESP_LOGE("json", "Failed to open");
+    //     fclose(f);
+    //     return;
+    // }
+    // char line[64];
+    // fgets(line, sizeof(line), f);
+    // printf("%s\n", line);
+    // fgets(line, sizeof(line), f);
+    // printf("%s\n", line);
+    // fgets(line, sizeof(line), f);
+    // printf("%s\n", line);
+
+    // fclose(f);
 }

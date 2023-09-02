@@ -218,28 +218,151 @@ void MYUI::app_watch_face_event_cb(lv_event_t *e)
     }
 }
 
+
+void MYUI::app_watch_face_page_event_cb(lv_event_t *e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);  
+    if(event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_TOP)
+    {
+        lv_obj_clear_flag(app_clock, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_weather, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_mood, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_wifi, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_ble, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_brightness, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_gif, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_aniya, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_watch_face, LV_OBJ_FLAG_HIDDEN);
+
+        app_watch_face_data.state = APP_Checkout;
+
+        lv_indev_wait_release(lv_indev_get_act());
+        lv_disp_load_scr(ui_page_mian);
+    }
+
+}
+
 void MYUI::app_watch_face_selector_event_cb(lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     lv_obj_t * obj = lv_event_get_target(e);
+    char buf[32];
+    char aniya_png[62];
 
-    if(code == LV_EVENT_VALUE_CHANGED) {
-        char buf[32];
-        lv_roller_get_selected_str(obj, buf, sizeof(buf));
-        printf("Selected month: %s\n", buf);
+    if(code == LV_EVENT_CLICKED) {
+        lv_roller_get_selected_str(app_watch_face_selector, buf, sizeof(buf));
+        for(int i = 0; buf[i] != '\0'; i++)
+        {
+            buf[i] = tolower(buf[i]);
+        }
+        sprintf(aniya_png, "/sdcard/aniya/%s", buf);
+        printf("selected: %s\n", buf);
     }
+
+    watch_face_page = lv_obj_create(NULL);
+    lv_obj_clear_flag(watch_face_page, LV_OBJ_FLAG_SCROLLABLE); /// Flags
+    lv_obj_set_style_radius(watch_face_page, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(watch_face_page, lv_color_hex(0xE77C8E), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(watch_face_page, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    aniya_img = lv_img_create(watch_face_page);
+    lv_img_set_src(aniya_img, aniya_png);
+    lv_obj_set_width(aniya_img, LV_SIZE_CONTENT);  /// 384
+    lv_obj_set_height(aniya_img, LV_SIZE_CONTENT); /// 412
+    lv_obj_set_x(aniya_img, 0);
+    lv_obj_set_y(aniya_img, 22);
+    lv_obj_set_align(aniya_img, LV_ALIGN_CENTER);
+    lv_obj_add_flag(aniya_img, LV_OBJ_FLAG_ADV_HITTEST);  /// Flags
+    lv_obj_clear_flag(aniya_img, LV_OBJ_FLAG_SCROLLABLE); /// Flags
+
+    aniya_label_time = lv_label_create(watch_face_page);
+    lv_obj_set_width(aniya_label_time, LV_SIZE_CONTENT);  /// 1
+    lv_obj_set_height(aniya_label_time, LV_SIZE_CONTENT); /// 1
+    lv_obj_set_x(aniya_label_time, -100);
+    lv_obj_set_y(aniya_label_time, -180);
+    lv_obj_set_align(aniya_label_time, LV_ALIGN_CENTER);
+    lv_label_set_text(aniya_label_time, "10:34");
+    lv_obj_set_style_text_font(aniya_label_time, &lv_font_montserrat_48, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    aniya_label_date = lv_label_create(watch_face_page);
+    lv_obj_set_width(aniya_label_date, LV_SIZE_CONTENT);  /// 1
+    lv_obj_set_height(aniya_label_date, LV_SIZE_CONTENT); /// 1
+    lv_obj_set_x(aniya_label_date, 100);
+    lv_obj_set_y(aniya_label_date, -180);
+    lv_obj_set_align(aniya_label_date, LV_ALIGN_CENTER);
+    lv_label_set_text(aniya_label_date, "Sun");
+    lv_obj_set_style_text_font(aniya_label_date, &lv_font_montserrat_48, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+
+
+    app_watch_face_data.mvx = -app_watch_face_data.mvx;
+    app_watch_face_data.mvy = -app_watch_face_data.mvy;
+    app_watch_face_data.width = -100;
+    app_watch_face_data.height = -260;
+    app_focused(app_watch_face, 0, &app_watch_face_data);
+    lv_obj_add_flag(app_watch_face, LV_OBJ_FLAG_HIDDEN);
+    anim_panel_scale2small(app_watch_face, 0, 130, 160);
+    anim_move_y(app_watch_face_text, 0, 130);
+    app_watch_face_selector_onDestory();
+
+    lv_disp_load_scr(watch_face_page);
+
+    lv_obj_add_event_cb(watch_face_page, app_watch_face_page_event_cb, LV_EVENT_GESTURE, NULL);
 }
+
+
+void MYUI::app_ble_event_cb(lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    lv_obj_t * obj = lv_event_get_target(e);
+
+    if(code == LV_EVENT_SHORT_CLICKED)
+    {
+        
+    }
+
+
+}
+
 
 
 void MYUI::app_watch_face_selector_onCreate(void)
 {
+    lv_fs_dir_t dir;
+    lv_fs_res_t res;
+
     char *str = NULL;
-    char list[100];
+    char list[100] = {0};
+
+    res = lv_fs_dir_open(&dir, "/sdcard/Aniya/");
+    if (res != LV_FS_RES_OK)
+    {
+        ESP_LOGI("SD", "fail to open");
+    }
+
+    char fn[50];
+    char png[300];
+    while (1)
+    {
+        res = lv_fs_dir_read(&dir, fn);
+        if (res != LV_FS_RES_OK)
+        {
+            ESP_LOGE("SD", "fail to open");
+            break;
+        }
+
+        if (strlen(fn) == 0)
+        {
+            break;
+        }
+
+        sprintf(png, "%s\n", fn);
+        str = strcat(list, png);
+    }
+
 
     app_watch_face_selector = lv_roller_create(app_watch_face);
-    str = strcat(list, "Option 1\n");
-    str = strcat(list, "Option 2\n");
-    str = strcat(list, "Option 3\n");
 
     lv_roller_set_options(app_watch_face_selector, str, LV_ROLLER_MODE_NORMAL);
     lv_obj_set_width(app_watch_face_selector, 150);
@@ -247,14 +370,32 @@ void MYUI::app_watch_face_selector_onCreate(void)
     lv_obj_set_x(app_watch_face_selector, 20);
     lv_obj_set_align(app_watch_face_selector, LV_ALIGN_CENTER);
 
-    lv_obj_add_event_cb(app_watch_face_selector, app_watch_face_selector_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+    app_watch_face_button = lv_btn_create(app_watch_face);
+    lv_obj_set_width(app_watch_face_button, 83);
+    lv_obj_set_height(app_watch_face_button, 40);
+    lv_obj_set_x(app_watch_face_button, -7);
+    lv_obj_set_y(app_watch_face_button, 150);
+    lv_obj_set_align(app_watch_face_button, LV_ALIGN_CENTER);
+    lv_obj_add_flag(app_watch_face_button, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(app_watch_face_button, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_scrollbar_mode(app_watch_face_button, LV_SCROLLBAR_MODE_OFF);
+    lv_obj_set_style_border_width(app_watch_face_button, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    app_watch_face_button_text = lv_label_create(app_watch_face_button);
+    lv_obj_set_width(app_watch_face_button_text, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(app_watch_face_button_text, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(app_watch_face_button_text, LV_ALIGN_CENTER);
+    lv_label_set_text(app_watch_face_button_text, "ok!");
+
+
+    lv_obj_add_event_cb(app_watch_face_button, app_watch_face_selector_event_cb, LV_EVENT_CLICKED, NULL);
 }
 
 void MYUI::app_watch_face_selector_onDestory(void)
 {
     lv_obj_del(app_watch_face_selector);
+    lv_obj_del(app_watch_face_button);
 }
-
 
 
 

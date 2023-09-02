@@ -4,7 +4,8 @@
 #include "../squareline/ui.h"
 #include "../hal/disp/hal_qdisp.hpp"
 #include "cJSON.h"
-#include "string.h"
+#include <string.h>
+#include <ctype.h>
 
 #include "sdmmc_cmd.h"
 #include "esp_vfs_fat.h"
@@ -62,6 +63,13 @@ extern lv_obj_t *app_watch_face;
 extern lv_obj_t *app_watch_face_text;
 extern lv_obj_t *app_watch_face_img;
 extern lv_obj_t *app_watch_face_selector;
+extern lv_obj_t *app_watch_face_button;
+extern lv_obj_t *app_watch_face_button_text;
+extern lv_obj_t *aniya_img;
+extern lv_obj_t *aniya_label_time;
+extern lv_obj_t *aniya_label_date;
+extern lv_obj_t *watch_face_page;
+
 
 extern lv_obj_t *app_wifi;
 extern lv_obj_t *app_wifi_img;
@@ -101,6 +109,8 @@ private:
     static void app_brightness_event_cb(lv_event_t *e);
     static void app_watch_face_event_cb(lv_event_t *e);
     static void app_watch_face_selector_event_cb(lv_event_t *e);
+    static void app_watch_face_page_event_cb(lv_event_t *e);
+    static void app_ble_event_cb(lv_event_t *e);
 
     static void app_watch_face_selector_onCreate(void);
     static void app_watch_face_selector_onDestory(void);
