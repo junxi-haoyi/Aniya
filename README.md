@@ -5,8 +5,6 @@
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/case%20v12.png)
 
 
-![](https://aniya.oss-cn-shanghai.aliyuncs.com/
-
 硬件开源地址：
 
 **制作不易，别忘了点一个star**🥰🥰🥰🥰🥰🥰
