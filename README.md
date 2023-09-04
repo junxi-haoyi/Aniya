@@ -4,6 +4,9 @@
 
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/case%20v12.png)
 
+
+![](https://aniya.oss-cn-shanghai.aliyuncs.com/
+
 硬件开源地址：
 
 **制作不易，别忘了点一个star**🥰🥰🥰🥰🥰🥰
@@ -44,6 +47,7 @@ LCD屏幕功耗高、分辨率低、但是帧数可以稳定在50 FPS左右，�
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20193009.png)
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20181106.png)
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/Aniya_PCB.jpg)
+![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230904101747.jpg)
 
 
 本次PCB设计为4层，3层信号层以及一个完整的地平面，布线虽然不咋地，但是此次设计已经是我目前绘制过最难的一次PCB

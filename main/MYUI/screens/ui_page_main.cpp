@@ -311,6 +311,8 @@ void MYUI::app_event_cb_init(void)
     lv_obj_add_event_cb(app_watch_face, app_watch_face_event_cb, LV_EVENT_SHORT_CLICKED, NULL);
     lv_obj_add_event_cb(app_watch_face_img, app_watch_face_event_cb, LV_EVENT_SHORT_CLICKED, NULL);
     lv_obj_add_event_cb(app_ble, app_ble_event_cb, LV_EVENT_SHORT_CLICKED, NULL);
+    lv_obj_add_event_cb(app_clock, main_page2clock_pointer_page_event_cb, LV_EVENT_LONG_PRESSED, NULL);
+    
 }
 
 void MYUI::ui_main_page_init(void)
@@ -349,7 +351,6 @@ void MYUI::ui_main_page_init(void)
 
     app_event_cb_init();
 }
-
 
 
 

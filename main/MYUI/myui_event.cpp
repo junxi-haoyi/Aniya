@@ -319,12 +319,73 @@ void MYUI::app_ble_event_cb(lv_event_t *e)
 
     if(code == LV_EVENT_SHORT_CLICKED)
     {
-        
+
     }
 
 
 }
 
+
+void MYUI::clock_pointer_page_event_cb(lv_event_t *e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_SCREEN_LOADED) 
+    {
+        anim_sec(app_clock_sec_img, 0);
+        anim_min(app_clock_min_img, 0);
+        anim_hour(app_clock_hour_img, 0);
+        return;
+    }
+
+    if(event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_TOP)
+    {
+        lv_obj_clear_flag(app_clock, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_weather, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_mood, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_wifi, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_ble, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_brightness, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_gif, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_aniya, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(app_watch_face, LV_OBJ_FLAG_HIDDEN);
+
+        lv_disp_load_scr(ui_page_mian);
+        return;
+
+
+    }
+}
+
+void MYUI::main_page2clock_pointer_page_event_cb(lv_event_t *e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_LONG_PRESSED)
+    {
+        anim_panel_scale2small(app_clock, 0, 130, 160);
+        anim_panel_scale2small(app_weather, 0, 195, 160);
+        anim_panel_scale2small(app_mood, 0, 100, 100);
+        anim_panel_scale2small(app_wifi,0, 110, 60);
+        anim_panel_scale2small(app_ble, 0, 110, 60);
+        anim_panel_scale2small(app_brightness, 0, 110, 60);
+        anim_panel_scale2small(app_gif, 0, 170, 75);
+        anim_panel_scale2small(app_aniya, 0, 160, 75);
+        anim_panel_scale2small(app_watch_face, 0, 230, 100);
+
+        lv_obj_add_flag(app_clock, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_weather, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_mood, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_wifi, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_ble, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_brightness, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_gif, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_aniya, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(app_watch_face, LV_OBJ_FLAG_HIDDEN);
+
+        lv_disp_load_scr(clock_pointer_page);
+    }
+}
 
 
 void MYUI::app_watch_face_selector_onCreate(void)

@@ -140,6 +140,19 @@ static void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param
     }
 }
 
+
+
+void aniya_ble_hid_deinit(void)
+{
+
+    esp_bluedroid_disable();
+    esp_bt_controller_disable();
+    esp_bt_controller_deinit();
+    ESP_ERROR_CHECK(esp_bt_controller_mem_release(ESP_BT_MODE_BLE));
+
+}
+
+
 void aniya_ble_hid_init(void)
 {
     esp_err_t ret;
@@ -209,7 +222,147 @@ void aniya_ble_hid_init(void)
 }
 
 
+int char2ID(char key)
+{
+    int re = 0;
+    switch (key)
+    {
+    case 'a':
+        re = 4;
+        break;
 
+    case 'b':
+        re = 5;
+        break;
+
+    case 'c':
+        re = 6;
+        break;  
+
+    case 'd':
+        re = 7;
+        break;
+
+    case 'e':
+        re = 8;
+        break;
+
+    case 'f':
+        re = 9;
+        break;
+
+    case 'g':
+        re = 10;
+        break;
+
+    case 'h':
+        re = 11;
+        break;
+
+    case 'i':
+        re = 12;
+        break;  
+
+    case 'j':
+        re = 13;
+        break;
+
+    case 'k':
+        re = 14;
+        break;
+
+    case 'l':
+        re = 15;
+        break; 
+
+    case 'm':
+        re = 16;
+        break;
+
+    case 'n':
+        re = 17;
+        break;
+
+    case 'o':
+        re = 18;
+        break;  
+
+    case 'p':
+        re = 19;
+        break;
+
+    case 'q':
+        re = 20;
+        break;
+
+    case 'r':
+        re = 21;
+        break;
+
+    case 's':
+        re = 22;
+        break;
+
+    case 't':
+        re = 23;
+        break;
+
+    case 'u':
+        re = 24;
+        break;  
+
+    case 'v':
+        re = 25;
+        break;
+
+    case 'w':
+        re = 26;
+        break;
+
+    case 'x':
+        re = 27;
+        break; 
+
+    case 'y':
+        re = 28;
+        break;
+
+    case 'z':
+        re = 29;
+        break; 
+    
+    default:
+        break;
+    }
+
+    return re;
+}
+
+
+
+
+void aniya_ble_hid_send_str(char * str)
+{
+    uint8_t i = 0;
+    uint8_t key_vaule = HID_KEY_RESERVED;
+
+    if(sec_conn)
+    {
+        ESP_LOGI(ANIYA_HID_TAG, "Send the String");
+        while (str[i] != '\0')
+        {
+            if(str[i] != '\0')
+            {
+                key_vaule = char2ID(str[i]);
+                esp_hidd_send_keyboard_value(hid_conn_id, 0, &key_vaule, 1);
+                key_vaule = HID_KEY_RESERVED;
+                esp_hidd_send_keyboard_value(hid_conn_id, 0, &key_vaule, 1);
+            }
+            i++;
+        }
+        
+    }
+}
 
 
 

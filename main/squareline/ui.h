@@ -59,6 +59,9 @@ LV_IMG_DECLARE(ui_img_1888405804);    // assets\微风.png
 LV_IMG_DECLARE(ui_img_749799162);    // assets\晴转阴.png
 LV_IMG_DECLARE(ui_img_1838330290);    // assets\雷阵雨.png
 LV_IMG_DECLARE(ui_img_thinking_256x256_png);   // assets\thinking_256x256.png
+LV_IMG_DECLARE(ui_img_clockwise_sec_png);    // assets\clockwise_sec.png
+LV_IMG_DECLARE(ui_img_clockwise_min_png);    // assets\clockwise_min.png
+LV_IMG_DECLARE(ui_img_clockwise_hour_png);    // assets\clockwise_hour.png
 
 LV_FONT_DECLARE(ui_font_Arcade80);
 LV_FONT_DECLARE(ui_font_Point50);

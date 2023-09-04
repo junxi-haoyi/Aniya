@@ -48,6 +48,9 @@ extern lv_obj_t *app_clock_text_min;
 extern lv_obj_t *app_clock_text_week;
 extern lv_obj_t *app_clock_text_date;
 extern lv_obj_t *app_clock_img;
+extern lv_obj_t *app_clock_sec_img;
+extern lv_obj_t *app_clock_hour_img;
+extern lv_obj_t *app_clock_min_img;
 
 extern lv_obj_t *app_mood;
 extern lv_obj_t *app_mood_img;
@@ -91,6 +94,7 @@ extern lv_obj_t *app_aniya_text;
 extern lv_obj_t *ui_page_mian;
 extern lv_obj_t *ble_page_main;
 extern lv_obj_t *watch_face_page;
+extern lv_obj_t *clock_pointer_page;
 
 //////////////////////////////////// ui_clock_page ////////////////////////////////////////////
 
@@ -102,6 +106,7 @@ private:
     static void ble_mian_page_init(void);
     static void ui_clock_page_init(void);
     static void watch_face_page_init(void);
+    static void clock_pointer_page_init(void);
 
     static void app_clock_event_cb(lv_event_t *e);
     static void main_page_event_cb(lv_event_t *e);
@@ -111,6 +116,8 @@ private:
     static void app_watch_face_selector_event_cb(lv_event_t *e);
     static void app_watch_face_page_event_cb(lv_event_t *e);
     static void app_ble_event_cb(lv_event_t *e);
+    static void clock_pointer_page_event_cb(lv_event_t *e);
+    static void main_page2clock_pointer_page_event_cb(lv_event_t *e);
 
     static void app_watch_face_selector_onCreate(void);
     static void app_watch_face_selector_onDestory(void);
@@ -126,6 +133,9 @@ public:
 
     const char *json_file = "/sdcard/1.json";
 
+    static void anim_hour(lv_obj_t * TargetObject, int delay);
+    static void anim_min(lv_obj_t * TargetObject, int delay);
+    static void anim_sec(lv_obj_t * TargetObject, int delay);
     static void anim_up(lv_obj_t *TargetObject, int delay);
     static void anim_scrolldot(lv_obj_t *TargetObject, int delay);
     static void anim_panel_scale2big(lv_obj_t *TargetObject, int delay, int16_t value1, int16_t value2);

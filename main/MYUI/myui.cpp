@@ -12,6 +12,10 @@ lv_obj_t *app_clock_text_min;
 lv_obj_t *app_clock_text_week;
 lv_obj_t *app_clock_text_date;
 lv_obj_t *app_clock_img;
+lv_obj_t *app_clock_sec_img;
+lv_obj_t *app_clock_hour_img;
+lv_obj_t *app_clock_min_img;
+
 
 lv_obj_t *app_mood;
 lv_obj_t *app_mood_img;
@@ -54,6 +58,8 @@ lv_obj_t *aniya_label_date;
 lv_obj_t *ui_page_mian;
 lv_obj_t *ble_page_main;
 lv_obj_t *watch_face_page;
+lv_obj_t *clock_pointer_page;
+
 
 
 
@@ -107,7 +113,7 @@ void MYUI::init(void)
 
     ui_main_page_init();
     watch_face_page_init();
-    // app_clock_task_create();
+    clock_pointer_page_init();
 
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_page_mian);
