@@ -83,7 +83,7 @@ IIC地址因为存在最后一位是读（1）还是写（0），而且在函数
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20191605.png)
 
 本次项目耗时将近两个月甚至更多，光是把屏幕驱动起来就花了将近半个月，代码目前还在编写阶段，但是已经有了基本的启动界面
-![](https://aniya.oss-cn-shanghai.aliyuncs.com/1693309733813.jpg)
+![](https://aniya.oss-cn-shanghai.aliyuncs.com/page.jpg)
 
 ## 软件流程图
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-08-29%20212308.png)
