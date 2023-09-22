@@ -5,7 +5,7 @@
 ![](https://aniya.oss-cn-shanghai.aliyuncs.com/case%20v12.png)
 
 
-硬件开源地址：
+硬件开源地址：https://oshwhub.com/karly/Aniya-Watch
 
 视频介绍：https://www.bilibili.com/video/BV17z4y1T7mw/
 
@@ -114,7 +114,7 @@ IIC地址因为存在最后一位是读（1）还是写（0），而且在函数
 
 ## 相关链接
 - Monica : <a href="https://github.com/Forairaaaaa/monica.git">Forairaaaaa/monica</a>
-- emoji表情壁纸网站: <a hred="https://www.freepik.com/">emoji</a>
+- emoji表情壁纸网站: <a href="https://www.freepik.com/">emoji</a>
 - Bit map字体网站: <a href="https://www.dafont.com/bitmap.php">Bit map</a>
 - ESP32-IDF: <a href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html">ESP-TDF</a>
 - LovyanGFX : <a href="https://github.com/lovyan03/LovyanGFX.git">lovyan03/LovyanGFX</a>
